@@ -1,0 +1,10 @@
+{% load cloudinary %} {% block content %}
+
+<h2>Upload IMAGE</h2>
+<div id="backend_upload">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{ backend_form }}
+    <button type="submit" name="img">Upload image</button>
+  </form>
+</div>
+{% endblock %}

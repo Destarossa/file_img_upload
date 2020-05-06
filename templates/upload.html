@@ -1,0 +1,9 @@
+{% load cloudinary %} {% block content %}
+
+<h2>Upload FILE</h2>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" name="file">Upload file</button>
+</form>
+
+{% endblock %}
