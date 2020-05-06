@@ -2,9 +2,39 @@
 
 <h2>Upload IMAGE</h2>
 <div id="backend_upload">
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" id="myform">
     {% csrf_token %} {{ backend_form }}
-    <button type="submit" name="img">Upload image</button>
+    <button type="submit" name="img" id="upload">Upload image</button>
   </form>
 </div>
+{% endblock %} {% block javascript %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  //var UPLOAD_PRESET = "ykjsyfis";
+
+  $("#upload").click(function (e) {
+    e.preventDefault();
+
+    console.log("yupi urupi");
+    //$form = $(this);
+    var formData = new FormData(document.getElementById("myform"));
+
+    $.ajax({
+      url: window.location.pathname,
+
+      type: "POST",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  });
+</script>
 {% endblock %}

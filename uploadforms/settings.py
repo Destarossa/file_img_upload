@@ -133,7 +133,7 @@ MEDIA_URL = '/media/'
 
 # SET UR xxxx HERE :)
 cloudinary.config(
-    cloud_name="aaaa",
-    api_key="yyy",
-    api_secret="xxxx"
+    cloud_name="",
+    api_key="",
+    api_secret=""
 )

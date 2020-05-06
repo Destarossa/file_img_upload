@@ -1,9 +1,39 @@
 {% load cloudinary %} {% block content %}
 
 <h2>Upload FILE</h2>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" id="myform">
   {% csrf_token %} {{ form.as_p }}
-  <button type="submit" name="file">Upload file</button>
+  <button type="submit" name="file" id="upload">Upload file</button>
 </form>
 
+{% endblock %} {% block javascript %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  //var UPLOAD_PRESET = "ykjsyfis";
+
+  $("#upload").click(function (e) {
+    e.preventDefault();
+
+    console.log("yupi urupi");
+    //$form = $(this);
+    var formData = new FormData(document.getElementById("myform"));
+
+    $.ajax({
+      url: window.location.pathname,
+      type: "POST",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  });
+</script>
 {% endblock %}
