@@ -7,6 +7,8 @@ from . import views
 
 urlpatterns = [
     path('upload/file/', views.upload_file, name='upload'),
-    path('upload/img/', views.upload_img, name='img')
+    path('upload/img/', views.upload_img, name='img'),
+    path('upload/file/fb', views.upload_fb, name='fb')
+
 
 ]

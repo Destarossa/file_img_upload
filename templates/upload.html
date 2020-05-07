@@ -3,6 +3,10 @@
 <h2>Upload FILE</h2>
 <form method="POST" enctype="multipart/form-data" id="myform">
   {% csrf_token %} {{ form.as_p }}
+  <select id="upload_options" name="upload_options">
+    <option value="1">To Server</option>
+    <option value="2">To Cloud</option>
+  </select>
   <button type="submit" name="file" id="upload">Upload file</button>
 </form>
 
@@ -19,21 +23,41 @@
     //$form = $(this);
     var formData = new FormData(document.getElementById("myform"));
 
-    $.ajax({
-      url: window.location.pathname,
-      type: "POST",
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: formData,
+    var mValue = $("#upload_options :selected").val();
 
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (response) {
-        console.log(response);
-      },
-    });
+    if (mValue == 1) {
+      $.ajax({
+        url: window.location.pathname,
+        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (response) {
+          console.log(response);
+        },
+      });
+    } else {
+      $.ajax({
+        url: "/upload/file/fb",
+        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (response) {
+          console.log(response);
+        },
+      });
+    }
   });
 </script>
 {% endblock %}

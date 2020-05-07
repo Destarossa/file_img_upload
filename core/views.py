@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 from .forms import FileForm, PhotoForm
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+import pyrebase
 
 
 @csrf_exempt
@@ -38,6 +38,7 @@ def upload_file(request):
             name, extension = os.path.splitext(uploaded_file.name)
             print(extension)
             print(name)
+            print(os.path.abspath(uploaded_file.name))
 
             form.save()
 
@@ -47,3 +48,21 @@ def upload_file(request):
         form = FileForm()
 
         return render(request, 'upload.html', {'form': form})
+
+
+@csrf_exempt
+def upload_fb(request):
+
+    config = {
+        ########################################
+    }
+
+    firebase = pyrebase.initialize_app(config)
+    storage = firebase.storage()
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['fileup']
+        path_on_cloud = uploaded_file.name
+        storage.child(path_on_cloud).put(uploaded_file)
+
+        return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})

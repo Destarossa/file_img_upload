@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'cloudinary'
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ MEDIA_URL = '/media/'
 
 # SET UR xxxx HERE :)
 cloudinary.config(
-    cloud_name="",
-    api_key="",
-    api_secret=""
+    cloud_name="dcocxgeyt",
+    api_key="179771539339886",
+    api_secret="qnId7e2c-dnlGziBawapx78A-7I"
 )
